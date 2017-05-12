@@ -32,13 +32,13 @@ int Utility::SplitStr2Array(vector<string> &vecOut,string &strSrc,string &strPat
 		{ 
 		    if(pos != last_search_pos)
 			{
-		      //substr£¬´ÓÖ¸¶¨ÏÂ±ê´¦¿ªÊ¼£¬¸´ÖÆÖ¸¶¨n¸ö×Ö½Ú
+		      //substrï¼Œä»æŒ‡å®šä¸‹æ ‡å¤„å¼€å§‹ï¼Œå¤åˆ¶æŒ‡å®šnä¸ªå­—èŠ‚
 		      vecOut.push_back(strSrc.substr(last_search_pos,pos-last_search_pos));
 		    }          
 		    last_search_pos = pos+1;  
 	    }
 		
-	   //ÅĞ¶Ïlast_search_posÊÇ·ñ´¦ÓÚ×Ö·û´®Ä©Î²
+	   //åˆ¤æ–­last_search_posæ˜¯å¦å¤„äºå­—ç¬¦ä¸²æœ«å°¾
 	   if(last_search_pos < nLen)
 	   {
 		 	vecOut.push_back(strSrc.substr(last_search_pos,nLen-last_search_pos));
@@ -75,11 +75,11 @@ int Utility::DecodeBase64(string &strDest ,string &strBaseSrc)
     for (; i < src_len; i += 4) 
     {
         dst[j++] = base64_decode_map[src[i]]<<2 | base64_decode_map[src[i + 1]] >> 4;
-        dst[j++] = base64_decode_map[src[i + 1]]<<4 | base64_decode_map[src[i + 2]] >> 2; //µ±base64_decode_map[src[i + 2]]ÖµÎª-1Ê±£¬¸ºÊıÓÒÒÆ£¬ÓÒ±ß²¹1£¬Èç¹ûÒ»Ö±ÓÒÒÆµÄ»°£¬×îºó¾Í¾Í±ä³É0xFFFFFFFF ¼´-1¡£¸ºÊı×óÒÆµÄ»°£¬ÓÒ±ß²¹0£¬Ò»Ö±×óÒÆµÄ»°£¬×îºó¾ÍÊÇ0À²¡£-2<<2 Îª-4 £» -2<<31Îª0
+        dst[j++] = base64_decode_map[src[i + 1]]<<4 | base64_decode_map[src[i + 2]] >> 2; //å½“base64_decode_map[src[i + 2]]å€¼ä¸º-1æ—¶ï¼Œè´Ÿæ•°å³ç§»ï¼Œå³è¾¹è¡¥1ï¼Œå¦‚æœä¸€ç›´å³ç§»çš„è¯ï¼Œæœ€åå°±å°±å˜æˆ0xFFFFFFFF å³-1ã€‚è´Ÿæ•°å·¦ç§»çš„è¯ï¼Œå³è¾¹è¡¥0ï¼Œä¸€ç›´å·¦ç§»çš„è¯ï¼Œæœ€åå°±æ˜¯0å•¦ã€‚-2<<2 ä¸º-4 ï¼› -2<<31ä¸º0
         dst[j++] = base64_decode_map[src[i + 2]]<<6 | base64_decode_map[src[i + 3]];
     }
     
-	//½âÂëºóµÄ¿Õ¸ñÎÊÌâ,base±àÂëÖĞ£¬Ò»¸ö=¶ÔÓ¦Õı³£±àÂëÖĞµÄÒ»¸ö¿Õ¸ñ¡£ÒªÈ¥³ı¿Õ¸ñ
+	//è§£ç åçš„ç©ºæ ¼é—®é¢˜,baseç¼–ç ä¸­ï¼Œä¸€ä¸ª=å¯¹åº”æ­£å¸¸ç¼–ç ä¸­çš„ä¸€ä¸ªç©ºæ ¼ã€‚è¦å»é™¤ç©ºæ ¼
 	if((int)dst[j-2] == -1)
 	{
 		dst[j-2] = '\0';
@@ -154,10 +154,10 @@ int Utility::String2NetAddr(const char *szSrc, uint64_t &ullDst)
     
 	for (;;) 
 	{
-		//¿ÉÒÔ¸ø³öÒ»¸öÈÎÒâ³¤¶ÈµÄ×Ö·û´®£»
+		//å¯ä»¥ç»™å‡ºä¸€ä¸ªä»»æ„é•¿åº¦çš„å­—ç¬¦ä¸²ï¼›
 		tmp = 0;
 		for (;;) 
-		{//»ñµÃ'.'·Ö¸îµÄÃ¿Ò»¸ö×Ö·û´®µÄÊıÖµ£»
+		{//è·å¾—'.'åˆ†å‰²çš„æ¯ä¸€ä¸ªå­—ç¬¦ä¸²çš„æ•°å€¼ï¼›
 			if (isdigit(c))
 			{
 				tmp = (tmp * base) + (c - '0');
@@ -167,7 +167,7 @@ int Utility::String2NetAddr(const char *szSrc, uint64_t &ullDst)
 
 		shift -= 8;
 		tmp <<= shift;
-		val += tmp;  //Ö÷»ú×Ö½ÚĞòµÄÖµ
+		val += tmp;  //ä¸»æœºå­—èŠ‚åºçš„å€¼
 		
 		if (c == '.')
 		{
@@ -189,16 +189,16 @@ int Utility::String2NetAddr(const char *szSrc, uint64_t &ullDst)
 		return -1;
 	}
 	
-	ullDst = htonl (val);  //µÃµ½ÍøÂç×Ö½ÚĞò
+	ullDst = htonl (val);  //å¾—åˆ°ç½‘ç»œå­—èŠ‚åº
     
 	return 0;
 }
 
 int  Utility::NetAddr2String(uint64_t const ullSrc,char * szDst)
 {
-	unsigned int utmp = ntohl(ullSrc);  //½«ÍøÂç×Ö½ÚĞò×ª»»ÎªÖ÷»ú×Ö½ÚĞò
+	unsigned int utmp = ntohl(ullSrc);  //å°†ç½‘ç»œå­—èŠ‚åºè½¬æ¢ä¸ºä¸»æœºå­—èŠ‚åº
 	unsigned char *bytes = (unsigned char *) &utmp;
-	snprintf (szDst,32, "%d.%d.%d.%d",bytes[3], bytes[2], bytes[1], bytes[0]);//ÍøÂç×Ö½ÚĞòÊÇ´ó¶Ë±íÊ¾£¬µÚÒ»¸öÊÇbyte[3]£»
+	snprintf (szDst,32, "%d.%d.%d.%d",bytes[3], bytes[2], bytes[1], bytes[0]);//ç½‘ç»œå­—èŠ‚åºæ˜¯å¤§ç«¯è¡¨ç¤ºï¼Œç¬¬ä¸€ä¸ªæ˜¯byte[3]ï¼›
     
 	return 0;
 }
@@ -216,28 +216,28 @@ int Utility::RecursiveMkdir(const char * pPath)
        return 0;
     }
 
-    int nRet = mkdir(pPath, S_IRWXU|S_IRGRP|S_IXGRP|S_IROTH|S_IXOTH|S_IWGRP|S_IWOTH);   //ĞèÒªÍ·ÎÄ¼ş<sys/stat.h>µÄÖ§³Ö
+    int nRet = mkdir(pPath, S_IRWXU|S_IRGRP|S_IXGRP|S_IROTH|S_IXOTH|S_IWGRP|S_IWOTH);   //éœ€è¦å¤´æ–‡ä»¶<sys/stat.h>çš„æ”¯æŒ
 
     if (0 == nRet)
     {
         return 0;
     }
-    else  //´´½¨Ä¿Â¼Ê§°Ü£¬¶à¼¶Ä¿Â¼¡£µİ¹é´´½¨
+    else  //åˆ›å»ºç›®å½•å¤±è´¥ï¼Œå¤šçº§ç›®å½•ã€‚é€’å½’åˆ›å»º
     {
         char szLocalPath[100] = {0};
-        char * pstr = strrchr((char *)pPath, '/');   //ĞèÒªÍ·ÎÄ¼ş<string.h>Ö§³Ö
+        char * pstr = strrchr((char *)pPath, '/');   //éœ€è¦å¤´æ–‡ä»¶<string.h>æ”¯æŒ
         int len = pstr - pPath;
 
         if (len >= sizeof(szLocalPath))
         {
-            len = sizeof(szLocalPath) -1;  //Áô1¸öÎ»¸ø×îÖÕµÄ\0½áÊø×Ö·û
+            len = sizeof(szLocalPath) -1;  //ç•™1ä¸ªä½ç»™æœ€ç»ˆçš„\0ç»“æŸå­—ç¬¦
         }
 
-        strncpy(szLocalPath, pPath, len);  // ĞèÒªÍ·ÎÄ¼ş<string.h>Ö§³Ö
+        strncpy(szLocalPath, pPath, len);  // éœ€è¦å¤´æ–‡ä»¶<string.h>æ”¯æŒ
 
         szLocalPath[len+1] = '\0';
 
-        //cout<<"µİ¹é´´½¨µÄÂ·¾¶ÊÇ"<<szLocalPath<<endl;
+        //cout<<"é€’å½’åˆ›å»ºçš„è·¯å¾„æ˜¯"<<szLocalPath<<endl;
         RecursiveMkdir(szLocalPath);
         return RecursiveMkdir(pPath);
     }
@@ -262,23 +262,23 @@ int Utility::GetFileList(const char * pDir, vector<string> & vctSubDir, vector<s
     
     for(unsigned int uNum = 0; uNum < globObj.gl_pathc; uNum++)
 	{
-        //gl_pathvÂ·¾¶ÊÇ¾ø¶ÔÂ·¾¶
+        //gl_pathvè·¯å¾„æ˜¯ç»å¯¹è·¯å¾„
 		memset(szName, 0, sizeof(szName));
 		strcpy(szName, globObj.gl_pathv[uNum]);
         
         if (stat(szName, &buf) < 0)
 		{
-			//cerr<<"»ñÈ¡ÎÄ¼şĞÅÏ¢Ê§°Ü¡£file:"<<szName<<"errmsg:"<<strerror(errno);
+			//cerr<<"è·å–æ–‡ä»¶ä¿¡æ¯å¤±è´¥ã€‚file:"<<szName<<"errmsg:"<<strerror(errno);
 			continue;
 		}
         
-        if (S_ISREG(buf.st_mode)) //ÆÕÍ¨ÎÄ¼ş
+        if (S_ISREG(buf.st_mode)) //æ™®é€šæ–‡ä»¶
 		{
             vctSubFile.push_back(szName);
 		}
-        else if(S_ISDIR(buf.st_mode))  //Ä¿Â¼
+        else if(S_ISDIR(buf.st_mode))  //ç›®å½•
         {
-            //ÊÇÄ¿Â¼¾ÍĞ´Èë¼¯ºÏÖĞ
+            //æ˜¯ç›®å½•å°±å†™å…¥é›†åˆä¸­
             vctSubDir.push_back(szName);
         }
     }
@@ -297,7 +297,7 @@ int Utility::SmallToBigEndian(uint8_t *pData, uint32_t uDataLen)
     unsigned char *pEnd   = pData + uDataLen - 1;
     unsigned char cTmp;
      
-    while(pEnd > pStart)  //×Ö½ÚÎ»½øĞĞÊ×Î²½»»»
+    while(pEnd > pStart)  //å­—èŠ‚ä½è¿›è¡Œé¦–å°¾äº¤æ¢
     {
         cTmp    = *pStart;
         *pStart = *pEnd;
@@ -322,7 +322,7 @@ int Utility::Str_trip(string & strsrc)
         return 0;
     }
     
-    int start = 0, end = 0;  //ÆğÊ¼Î»ÖÃºÍ½áÊøÎ»ÖÃ
+    int start = 0, end = 0;  //èµ·å§‹ä½ç½®å’Œç»“æŸä½ç½®
       
     int pos = 0;
    
@@ -333,7 +333,7 @@ int Utility::Str_trip(string & strsrc)
         
     start = pos;
         
-    pos = strsrc.size() - 1;  //µ¹ÖÃ
+    pos = strsrc.size() - 1;  //å€’ç½®
     while(pos >= start && strsrc[pos] == ' ')
     {
         --pos;
@@ -353,10 +353,198 @@ int Utility::GetRandomValue(int max)
         return 0;
     }
     
-    //ÏÈÉèÖÃËæ»úÊıÖÖ×Ó
+    //å…ˆè®¾ç½®éšæœºæ•°ç§å­
     srand((unsigned)time(0));
     
     int random = rand()% max;
     
     return random;
 }
+
+int Utility::TurnLuckTable(vector<unsigned> & prates, int len, int & target)
+{
+	//è·å¾—æ¦‚ç‡æ€»å’Œ
+	int max = 0, last = 0;
+
+	for(int i = 0 ; i < len; ++i)
+	{
+		max += prates[i];
+	}
+
+	int random = 0;
+
+	//äº§ç”Ÿéšæœºå€¼
+	random = Math::GetRandomInt(max);
+
+	int j = 0;
+
+	for (; j < len; ++j )
+	{
+		if (random < (last + prates[j]))
+		{
+			break;
+		}
+
+		last += prates[j];
+	}
+
+	target = j;
+
+	return 0;
+}
+
+
+int Utility::GetRandomBetweenAB(int min, int max)
+{
+	int randmax = max - min + 1;   //n-m+1
+	int randval =  Math::GetRandomInt(randmax); //rand()%(n-m+1)
+
+	int val = randval + min;  // rand()%(n-m+1) + m
+
+	return val;
+}
+
+int Utility::SetBitCurrent(unsigned & current, int pos)
+{
+	//æ–¹æ³•ï¼Ÿç”¨ä¸€ä¸ª1000çš„å€¼ä¸currentè¿›è¡Œæˆ–è¿ç®—å³å¯ã€‚è€Œ1000ä¸­1çš„ä½ç½®ï¼Œå°±æ˜¯posçš„å€¼.å³å°†1ç›´æ¥å·¦ç§»posä¸ªä½ç½®å³å¯
+	unsigned target = 1;
+	target = target <<pos;
+
+	current = current | target;
+
+	return 0;
+}
+
+int Utility::SetBitCurrent(unsigned char & current, int pos)
+{
+	//æ–¹æ³•ï¼Ÿç”¨ä¸€ä¸ª1000çš„å€¼ä¸currentè¿›è¡Œæˆ–è¿ç®—å³å¯ã€‚è€Œ1000ä¸­1çš„ä½ç½®ï¼Œå°±æ˜¯posçš„å€¼.å³å°†1ç›´æ¥å·¦ç§»posä¸ªä½ç½®å³å¯
+	unsigned char target = 1;
+	target = target <<pos;
+
+	current = current | target;
+
+	return 0;
+}
+
+int Utility::SetZeroRange(unsigned char & current, int first, int last)
+{
+	//é€šè¿‡å¾ªç¯è°ƒç”¨å³å¯
+	for(int i = first; i <= last; ++i)
+	{
+		SetZeroCurrent(current, i);
+	}
+
+	return 0;
+}
+
+int Utility::SetZeroCurrent(unsigned char & current, int pos)
+{
+	//å°†æŒ‡å®šä½è®¾ç½®ä¸º0ï¼Œåˆ™å¿…é¡»è¿›è¡Œäº¤é›†è¿ç®—. å€¼æ˜¯1101, 0çš„ä½ç½®ï¼Œå°±æ˜¯posçš„ä½ç½®ï¼Œå¯ä»¥é€šè¿‡å–åè·å¾—ï¼Œå³å…ˆäº§ç”Ÿ0010,å³å°†1å·¦ç§»posä½
+	unsigned char target = ~(1 << pos);
+
+	current = current & target;
+
+	return 0;
+}
+
+int Utility::GetTargetBitValue(int maxsize, unsigned &target)
+{
+	target = 1;
+
+	//å°†ä¸€ä¸ª1çš„æ•°ï¼Œå…ˆå·¦ç§»1ä½ï¼Œå†å’Œ1è¿›è¡Œæˆ–è¿ç®—ï¼Œç„¶åå¾ªç¯å³å¯
+	for(int i = 1; i < maxsize; ++i)   //è®¡ç®—æ»¡è¶³æ¡ä»¶æ—¶çš„å€¼,å‰é¢n-sizeä¸º0ï¼Œä½ä½sizeå…¨ä¸º1
+	{
+		target = (target << 1) | 1;
+	}
+
+	return 0;
+}
+
+bool Utility::CheckPosIsZero(unsigned value, unsigned pos)
+{
+	//ç¬¬ä¸€ä¸ª1ï¼Œå·¦ç§»posï¼Œç„¶åä¸valueè¿›è¡Œ&è¿ç®—ï¼Œå¦‚æœè¯¥ä½ä¸º1ï¼Œåˆ™å€¼ä¸º1ï¼Œåä¹‹ï¼Œä¸º0
+	unsigned target = 1;
+
+	target = target <<pos;
+
+	int result = value & target;
+
+	return result ? false : true;
+}
+
+int Utility::GetHourTimes(unsigned start, unsigned end)
+{
+	if (start >= end)
+	{
+		return 0;
+	}
+
+	time_t tStart = (time_t)start;
+	time_t tEnd = (time_t)end;
+
+	struct tm tmStartTime;   //å®šä¹‰tmç±»å‹
+	struct tm tmEndTime;
+
+	localtime_r(&tStart, &tmStartTime);   //ä»time_tè½¬æ¢æˆtmæ—¶ï¼Œè·å¾—çš„å°±æ˜¯è·ç¦»1900çš„å·®å€¼
+	localtime_r(&tEnd, &tmEndTime);
+
+	//å°†æ—¶é—´è½¬æ¢æˆæ•´ç‚¹æ—¶é—´
+	tmStartTime.tm_isdst = 0;
+	tmStartTime.tm_min = 0;
+	tmStartTime.tm_sec = 0;
+
+	//ç»“æŸæ—¶é—´å¤„ç†
+	tmEndTime.tm_isdst = 0;
+	tmEndTime.tm_min = 0;
+	tmEndTime.tm_sec = 0;
+
+	unsigned uTimeStart = (unsigned)mktime(&tmStartTime);
+	unsigned uTimeEnd = (unsigned)mktime(&tmEndTime);
+
+	unsigned diff = uTimeEnd - uTimeStart;
+
+	int hour = diff/3600;
+
+	return hour;
+}
+
+unsigned Utility::GetHourTime(unsigned times)
+{
+	time_t tTimes = (time_t)times;
+
+	struct tm tmNow;   //å®šä¹‰tmç±»å‹
+	localtime_r(&tTimes, &tmNow);
+
+	//å°†æ—¶é—´è½¬æ¢æˆæ•´ç‚¹æ—¶é—´
+	tmNow.tm_isdst = 0;
+	tmNow.tm_min = 0;
+	tmNow.tm_sec = 0;
+
+	//æ ¹æ®posï¼Œå¾€å‰æ¨ç®—
+	return (unsigned)mktime(&tmNow);
+}
+
+unsigned Utility::GetHourByTime(unsigned time)
+{
+	time_t tTimes = (time_t)time;
+
+	struct tm tmNow;   //å®šä¹‰tmç±»å‹
+	localtime_r(&tTimes, &tmNow);
+
+	return tmNow.tm_hour;
+}
+
+int Utility::GetDate(unsigned time, int & year, int & month, int &day)
+{
+	time_t tTimes = (time_t)time;
+
+	struct tm tmNow;   //å®šä¹‰tmç±»å‹
+	localtime_r(&tTimes, &tmNow);
+
+	year	= tmNow.tm_year+1900;
+	month	= tmNow.tm_mon+1;
+	day	= tmNow.tm_mday;
+
+	return 0;
+}
+

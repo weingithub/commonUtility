@@ -1,7 +1,7 @@
 //************************************************
-//¡ó×÷Õß£ºyrc
-//¡óÈÕÆÚ£º2014Äê9ÔÂ12ÈÕ
-//¡óËµÃ÷£ºÊ¹ÓÃ¹¤¾ß´óÈ«
+//â—‡ä½œè€…ï¼šyrc
+//â—‡æ—¥æœŸï¼š2014å¹´9æœˆ12æ—¥
+//â—‡è¯´æ˜ï¼šä½¿ç”¨å·¥å…·å¤§å…¨
 //*************************************************
 
 #pragma  once
@@ -26,54 +26,125 @@ namespace Utility
     using std::string;
     using std::vector;
     
-	//»ñÈ¡ÏµÍ³µ±Ç°Ê±¼ä£¬²¢°´ÕÕÌØ¶¨¸ñÊ½Êä³ö
-	//strDst:Êä³öµÄÊ±¼ä×Ö·û´®
-	//strFormat:ÊäÈëµÄÊ±¼ä¸ñÊ½¿ØÖÆ
+	//è·å–ç³»ç»Ÿå½“å‰æ—¶é—´ï¼Œå¹¶æŒ‰ç…§ç‰¹å®šæ ¼å¼è¾“å‡º
+	//strDst:è¾“å‡ºçš„æ—¶é—´å­—ç¬¦ä¸²
+	//strFormat:è¾“å…¥çš„æ—¶é—´æ ¼å¼æ§åˆ¶
 	int GetNowTime(string &strDst,string &strFormat);
 	
-	//½«Ô´×Ö·û´®°´ÕÕÖ¸¶¨×Ö·û´®ÑùÊ½·Ö¸îµ½Êı×éÖĞ
-	//vecOut:Êä³öµÄ×Ö·û´®Êı×é
-	//strSrc:Ô´×Ö·û´®
-	//strPattern:×Ö·û´®ÇĞ¸îÑùÊ½
+	//å°†æºå­—ç¬¦ä¸²æŒ‰ç…§æŒ‡å®šå­—ç¬¦ä¸²æ ·å¼åˆ†å‰²åˆ°æ•°ç»„ä¸­
+	//vecOut:è¾“å‡ºçš„å­—ç¬¦ä¸²æ•°ç»„
+	//strSrc:æºå­—ç¬¦ä¸²
+	//strPattern:å­—ç¬¦ä¸²åˆ‡å‰²æ ·å¼
 	int SplitStr2Array(vector<string> &vecOut, string &strSrc, string &strPattern);
 	
-	//½âÂëbas464×Ö·û´®
-	//strDest:Êä³öµÄ½âÂëºóµÄ×Ö·û´®
-	//strBaseSrc:ÊäÈëµÄbase64±àÂëµÄ×Ö·û´®
+	//è§£ç bas464å­—ç¬¦ä¸²
+	//strDest:è¾“å‡ºçš„è§£ç åçš„å­—ç¬¦ä¸²
+	//strBaseSrc:è¾“å…¥çš„base64ç¼–ç çš„å­—ç¬¦ä¸²
 	int DecodeBase64(string &strDest ,string &strBaseSrc);
 	
-	//¶Ô×Ö·û´®½øĞĞbase64±àÂë
-	//strBaseDst:Êä³öµÄbase64×Ö·û´®
-	//strSrc:Ô´×Ö·û´®
+	//å¯¹å­—ç¬¦ä¸²è¿›è¡Œbase64ç¼–ç 
+	//strBaseDst:è¾“å‡ºçš„base64å­—ç¬¦ä¸²
+	//strSrc:æºå­—ç¬¦ä¸²
 	int EncodeBase64(string &strBaseDst, string &strSrc);
 	
-	//½«×Ö·û´®×ª»»ÎªÕûĞÎ
+	//å°†å­—ç¬¦ä¸²è½¬æ¢ä¸ºæ•´å½¢
 	
-	//½«ÕûĞÎ×ª»»Îª×Ö·û´®
+	//å°†æ•´å½¢è½¬æ¢ä¸ºå­—ç¬¦ä¸²
 	
-	//½«µã·ÖÊ®½øÖÆ×ª»»ÎªÍøÂç×Ö½ÚĞò£¨´ó¶Ë£©
+	//å°†ç‚¹åˆ†åè¿›åˆ¶è½¬æ¢ä¸ºç½‘ç»œå­—èŠ‚åºï¼ˆå¤§ç«¯ï¼‰
 	int String2NetAddr(const char * szSrc, uint64_t & ullDst);
 	
-	//ÍøÂç×Ö½ÚĞò×ª»»Îªµã·ÖÊ®½øÖÆ
+	//ç½‘ç»œå­—èŠ‚åºè½¬æ¢ä¸ºç‚¹åˆ†åè¿›åˆ¶
 	int NetAddr2String(uint64_t const ullSrc, char * szDst);
     
-    //µİ¹é´´½¨Ä¿Â¼¡£
-    //pPath(in)È«Â·¾¶
+    //é€’å½’åˆ›å»ºç›®å½•ã€‚
+    //pPath(in)å…¨è·¯å¾„
     int  RecursiveMkdir(const char * pPath);
     
-    //»ñÈ¡¸ø¶¨Ä¿Â¼ÏÂµÄËùÓĞ×ÓÄ¿Â¼ĞÅÏ¢ºÍÎÄ¼şĞÅÏ¢(²»Ö§³Öµİ¹éËÑË÷)
+    //è·å–ç»™å®šç›®å½•ä¸‹çš„æ‰€æœ‰å­ç›®å½•ä¿¡æ¯å’Œæ–‡ä»¶ä¿¡æ¯(ä¸æ”¯æŒé€’å½’æœç´¢)
     int GetFileList(const char * pDir, vector<string> & vctSubDir, vector<string> & vctSubFile);
     
-    //´óĞ¡¶Ë×ª»»
+    //å¤§å°ç«¯è½¬æ¢
     int SmallToBigEndian(uint8_t *pData, uint32_t uDataLen);
 	int BigToSmallEndian(uint8_t *pData, uint32_t uDataLen);	
     
-    //È¥³ı×Ö·û´®Ê×Î²µÄ¿Õ°×·û
+    //å»é™¤å­—ç¬¦ä¸²é¦–å°¾çš„ç©ºç™½ç¬¦
     int Str_trip(string & strsrc);
     
-    //»ñµÃÒ»¶¨·¶Î§µÄËæ»úÖµ
+    //è·å¾—ä¸€å®šèŒƒå›´çš„éšæœºå€¼
     int GetRandomValue(int max);
     
+    /*
+	 * åœ¨æ¦‚ç‡æ•°ç»„ä¸­éšæœºæŠ½å–ä¸€ä¸ª
+	 * param  rates(in)æ¦‚ç‡é›†åˆ,len(in),target(out)
+	 * return 0-æˆåŠŸ
+    */
+     int TurnLuckTable(vector<unsigned> & rates, int len, int & target);
+	
+    	/*
+	 * åœ¨ä¸¤ä¸ªå€¼ä¹‹é—´äº§ç”Ÿä¸€ä¸ªéšæœºå€¼
+	 * param  min(in),max(in)
+	 * return éšæœºå€¼
+	 */
+	int GetRandomBetweenAB(int min, int max);	
+	
+		/*
+	 * è®¾ç½®æŒ‡å®šä½å€¼ä¸º1
+	 * param  current(in&out),pos(in)
+	 * return 0-æˆåŠŸ
+	 */
+	static int SetBitCurrent(unsigned & current, int pos);
+
+	/*
+	* è®¾ç½®æŒ‡å®šä½å€¼ä¸º1
+	* param  current(in&out),pos(in)
+	* return 0-æˆåŠŸ
+	*/
+	static int SetBitCurrent(unsigned char & current, int pos);
+
+	/*
+	* è®¾ç½®æŒ‡å®šèŒƒå›´å†…ä½çš„å€¼ä¸º0
+	* param  current(in&out),first(in),last(in)ï¼ŒèŒƒå›´åŒºé—´æ˜¯[first, last]
+	* return 0-æˆåŠŸ
+	*/
+	static int SetZeroRange(unsigned char & current, int first, int last);
+
+	/*
+	* è®¾ç½®æŒ‡å®šä½çš„å€¼ä¸º0
+	* param  current(in&out),pos(in)
+	* return 0-æˆåŠŸ
+	*/
+	static int SetZeroCurrent(unsigned char & current, int pos);
+
+	/*
+	 * è®¾ç½®ä½ä½maxsizeä¸ªå…¨ä¸º1çš„å€¼
+	 * param  maxsize(in),target(out)
+	 * return 0-æˆåŠŸ
+	 */
+	static int GetTargetBitValue(int maxsize, unsigned &target);
+
+	/*
+	 * åˆ¤æ–­æŸä¸ªå€¼çš„æŒ‡å®šposä½æ˜¯å¦ä¸º0
+	 * param  value(in),pos(in)-ä¸‹æ ‡
+	 * return true-æ˜¯
+	 */
+	static bool CheckPosIsZero(unsigned value, unsigned pos);
+	
+		/*
+	 * è·å–ä¸¤ä¸ªæ—¶é—´ç‚¹ä¹‹é—´çš„æ•´ç‚¹æ¬¡æ•°
+	 * param  value(in),pos(in)
+	 * return æ•´ç‚¹æ¬¡æ•°
+	 */
+	static int GetHourTimes(unsigned start, unsigned end);
+
+	//è·å–æ•´ç‚¹æ—¶é—´
+	static unsigned GetHourTime(unsigned times);
+
+	//è·å–ç»™å®šæ—¶é—´çš„å°æ—¶å€¼
+	static unsigned GetHourByTime(unsigned time);
+
+	//è·å–ç»™å®šæ—¶é—´çš„å¹´æœˆæ—¥
+	static int GetDate(unsigned time, int & year, int & month, int &day);
 }
 
 #endif //_COMMON_UTILITY_H_
